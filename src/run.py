@@ -13,6 +13,6 @@ app.register_blueprint(led.blueprint)
 
 
 if __name__ == '__main__':
-        run_simple(HOSTNAME, PORT, app,
-                   use_reloader=True,
-                   use_debugger=True)
+    run_simple(HOSTNAME, PORT, app,
+               use_reloader=True,
+               use_debugger=True)
