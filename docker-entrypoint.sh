@@ -2,9 +2,7 @@
 
 
 if [ "${1}" = 'develop' ]; then
-  export FLASK_DEBUG=1
-  export FLASK_APP=${APP_DIR}/src/run.py
-  exec flask run
+  exec python ${APP_DIR}/src/run.py
 fi
 
 if [ "${1}" = 'serve' ]; then

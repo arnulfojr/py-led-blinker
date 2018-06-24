@@ -1,4 +1,6 @@
+cerberus
 Flask
 gpiozero
 gunicorn
 RPi.GPIO
+ujson
