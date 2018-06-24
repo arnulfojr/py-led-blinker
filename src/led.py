@@ -9,8 +9,7 @@ from settings.led import PIN_NUMBER
 
 logger = logging.getLogger()
 handler = logging.StreamHandler()
-formatter = logging.Formatter(
-                '[%(asctime)s] [%(levelname)-2s] %(message)s')
+formatter = logging.Formatter('[%(asctime)s] [%(levelname)-2s] %(message)s')
 handler.setFormatter(formatter)
 logger.addHandler(handler)
 logger.setLevel(logging.INFO)
@@ -60,6 +59,7 @@ def get_state():
     }
 
     return make_response(ujson.dumps(payload), 200)
+
 
 @bp.route('/', methods=['PUT'])
 def set_state():
