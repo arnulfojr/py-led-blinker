@@ -1,10 +1,19 @@
 import ujson
+import logging
 
 from cerberus import Validator
 from flask import Blueprint, make_response, request
 from gpiozero import LED
 from settings.led import PIN_NUMBER
 
+
+logger = logging.getLogger()
+handler = logging.StreamHandler()
+formatter = logging.Formatter(
+                '[%(asctime)s] [%(levelname)-2s] %(message)s')
+handler.setFormatter(formatter)
+logger.addHandler(handler)
+logger.setLevel(logging.INFO)
 
 # default LED in the PIN_NUMBER
 _DEFAULT_LED = LED(PIN_NUMBER)
@@ -87,10 +96,14 @@ def set_state_for(pin: int):
     payload = request.get_json()
 
     if not validator.validate(payload):
+        logger.warn('Invalid request!')
         return make_response(ujson.dumps(validator.errors), 400)
 
+    logger.info(f'Will get LED for pin {pin}')
     led = get_led(pin)
     document = validator.document
-    led.value = document.get('value')
+    value = document.get('value')
+    logger.info(f'Will set LED {pin} with value: {value}')
+    led.value = value
 
     return make_response(ujson.dumps(document), 200)
