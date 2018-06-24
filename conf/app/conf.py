@@ -4,8 +4,6 @@ from settings import HOSTNAME, PORT
 
 workers = multiprocessing.cpu_count()
 
-threads = 2
-
 bind = f'{HOSTNAME}:{PORT}'
 
 accesslog = '-'
