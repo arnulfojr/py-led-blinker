@@ -1,0 +1,12 @@
+version: '2'
+services:
+  blinker:
+    image: arnulfosolis/led-blinker:latest
+    build:
+      context: .
+    expose:
+      - 5000
+    volumes:
+      - ./src/:/app/src/
+    devices:
+      - /dev/gpiomem

@@ -1,0 +1,10 @@
+version: '2'
+services:
+  blinker:
+    image: arnulfosolis/led-blinker:latest
+    command: develop
+    build:
+      context: .
+    expose:
+      - 5000
+
