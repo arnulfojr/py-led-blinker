@@ -6,7 +6,7 @@ workers = multiprocessing.cpu_count()
 
 threads = 2
 
-bind = f'{HOSTNAME}:{PORt}'
+bind = f'{HOSTNAME}:{PORT}'
 
 accesslog = '-'
 
