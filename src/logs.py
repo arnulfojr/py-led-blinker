@@ -1,0 +1,14 @@
+import logging
+
+
+logger = logging.getLogger()
+
+handler = logging.StreamHandler()
+
+formatter = logging.Formatter('[%(asctime)s] [%(levelname)-2s] %(message)s')
+
+handler.setFormatter(formatter)
+
+logger.addHandler(handler)
+
+logger.setLevel(logging.INFO)
