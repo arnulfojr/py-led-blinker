@@ -21,6 +21,12 @@ SCHEMA = {
         'required': True,
         'min': 0,
         'max': 1
+    },
+    'action': {
+        'type': 'string',
+        'required': False,
+        'default': 'boolean',
+        'allowed': ['boolean', 'blink']
     }
 }
 
@@ -29,6 +35,7 @@ def get_led(pin_number: int = PIN_NUMBER) -> LED:
     """LED Factory."""
     global _DEFAULT_LED
 
+    logger.info(f'Will get LED for pin {pin_number}')
     if pin_number == PIN_NUMBER:
         return _DEFAULT_LED
 
@@ -67,7 +74,12 @@ def set_state():
 
     document = validator.document
     value = document.get('value')
-    _DEFAULT_LED.value = value
+
+    if document.get('action') == 'boolean':
+        _DEFAULT_LED.value = value
+
+    if document.get('action') == 'blink':
+        _DEFAULT_LED.blink()
 
     return make_response(ujson.dumps(payload), 200)
 
@@ -92,11 +104,15 @@ def set_state_for(pin: int):
         logger.warn('Invalid request!')
         return make_response(ujson.dumps(validator.errors), 400)
 
-    logger.info(f'Will get LED for pin {pin}')
     led = get_led(pin)
     document = validator.document
     value = document.get('value')
-    logger.info(f'Will set LED {pin} with value: {value}')
-    led.value = value
+
+    if document.get('action') == 'boolean':
+        logger.info(f'Will set LED {pin} with value: {value}')
+        led.value = value
+
+    if value and document.get('action') == 'blink':
+        led.blink()
 
     return make_response(ujson.dumps(document), 200)
