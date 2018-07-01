@@ -6,4 +6,4 @@ pip3 install -r ${APP_DIR}/conf/tests/requirements.txt
 
 echo '## Run flake8 ##'
 
-exec flake8
+exec flake8 .
