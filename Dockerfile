@@ -44,5 +44,5 @@ ENTRYPOINT ["/bin/sh", "/app/docker-entrypoint.sh"]
 CMD ["serve"]
 
 # server's healthcheck
-HEALTHCHECK --interval=1m --timeout=3s --start-period=5s \
+HEALTHCHECK --interval=30s --timeout=3s --start-period=5s \
     CMD wget --quiet --spider --tries=1 http://${HOSTNAME}:${CONTAINER_PORT}/health/ || exit 1
