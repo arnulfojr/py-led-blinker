@@ -4,10 +4,8 @@ services:
     build:
       context: .
     command: develop
-    priviledged: true
     ports:
       - 5000:5000
     volumes:
       - ./src/:/app/src/
       - ./docker-entrypoint.sh:/app/docker-entrypoint.sh
-      - /dev/gpiomem:/dev/gpiomem

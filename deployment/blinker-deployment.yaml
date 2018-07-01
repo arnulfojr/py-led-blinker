@@ -1,0 +1,48 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: led-blinker
+spec:
+  ports:
+  - port: 5000
+  selector:
+    app: led-blinker
+    gpio: led
+  clusterIP: None
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: led-blinker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: led-blinker
+  strategy:
+    type: Recreate  # All existing Pods are killed before new ones are created
+  template:
+    metadata:
+      labels:
+        app: led-blinker
+    spec:
+      nodeSelector:
+        gpio: led
+      containers:
+      - image: arnulfosolis/py-led-blinker:master
+        name: led-blinker
+        env:
+        - name: PIN_NUMBER
+          value: "4"
+        ports:
+        - containerPort: 5000
+          name: led-blinker
+        volumeMounts:
+        - name: gpio-volume
+          mountPath: /dev/gpiomem
+      restartPolicy: Always
+      volumes:
+      - name: gpio-volume
+        hostPath:
+          path: /dev/gpiomem
+          type: CharDevice
