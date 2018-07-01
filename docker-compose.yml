@@ -1,9 +1,8 @@
 version: '2'
 services:
   blinker:
-    image: arnulfosolis/led-blinker:latest
+    image: arnulfosolis/py-led-blinker:latest
     build:
       context: .
     expose:
       - 5000
-

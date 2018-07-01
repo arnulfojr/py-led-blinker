@@ -1,14 +1,13 @@
 version: '2'
 services:
   blinker:
-    image: arnulfosolis/led-blinker:latest
-    command: develop
     build:
       context: .
+    command: develop
+    priviledged: true
     ports:
       - 5000:5000
     volumes:
       - ./src/:/app/src/
       - ./docker-entrypoint.sh:/app/docker-entrypoint.sh
-    devices:
-      - /dev/gpiomem
+      - /dev/gpiomem:/dev/gpiomem

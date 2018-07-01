@@ -1,6 +1,5 @@
 version: '2'
 services:
   blinker:
-    privileged: true
-    volumes:
-        - /dev/gpiomem:/dev/gpiomem
+    devices:
+        - /dev/gpiomem
