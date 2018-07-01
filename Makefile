@@ -20,6 +20,6 @@ run:
 	$(DOCKER_COMPOSE) down
 	$(DOCKER_COMPOSE) \
 		-f docker-compose.yml \
-		-f conf/docker-compose.dev.yml \
+		-f conf/docker-compose.device.yml \
 		up
 .PHONY: run
