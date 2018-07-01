@@ -1,0 +1,13 @@
+language: python
+
+services:
+  - docker
+
+stages:
+  - lint
+
+jobs:
+  include:
+    - stage: lint
+      script:
+      - make lint

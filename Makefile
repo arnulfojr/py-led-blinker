@@ -11,7 +11,7 @@ local:
 run_local:
 	$(DOCKER_COMPOSE) down
 	$(DOCKER_COMPOSE) -f docker-compose.yml \
-		-f conf/docker-compose.dev.yml \
+		-f conf/docker-compose.develop.yml \
 		-f conf/docker-compose.device.yml \
 		up
 .PHONY: run_local
@@ -23,3 +23,15 @@ run:
 		-f conf/docker-compose.device.yml \
 		up
 .PHONY: run
+
+lint:
+	$(DOCKER_COMPOSE) down
+	$(DOCKER_COMPOSE) -f docker-compose.yml \
+		-f conf/docker-compose.lint.yml \
+		run blinker
+.PHONY: test)
+
+build:
+	$(DOCKER_COMPOSE) down
+	$(DOCKER_COMPOSE) build
+.PHONY: build

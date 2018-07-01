@@ -1,0 +1,8 @@
+version: '2'
+services:
+  blinker:
+    command:
+      - lint
+    volumes:
+      - ./conf/tests/:/app/conf/tests
+      - ./.flake8:/app/.flake8

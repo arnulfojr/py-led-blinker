@@ -7,6 +7,9 @@ ENV CONTAINER_PORT 5000
 
 ENV APP_DIR /app
 
+# add the bins to the PATH
+ENV PATH "${PATH}:${APP_DIR}/bin"
+
 ENV PYTHONPATH "${APP_DIR}/src"
 
 # add the build essentials
@@ -27,6 +30,8 @@ COPY ./src/ ${APP_DIR}/src/
 
 COPY ./conf/app/ ${APP_DIR}/conf/app/
 
+COPY ./bin/ ${APP_DIR}/bin/
+
 # expose the server port
 EXPOSE ${CONTAINER_PORT}
 
@@ -39,5 +44,5 @@ ENTRYPOINT ["/bin/sh", "/app/docker-entrypoint.sh"]
 CMD ["serve"]
 
 # server's healthcheck
-HEALTHCHECK --interval=1m --timeout=3s --retries=5 --start-period=5s \
+HEALTHCHECK --interval=1m --timeout=3s --start-period=5s \
     CMD wget --quiet --spider --tries=1 http://${HOSTNAME}:${CONTAINER_PORT}/health/ || exit 1
