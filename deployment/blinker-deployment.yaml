@@ -37,12 +37,9 @@ spec:
         ports:
         - containerPort: 5000
           name: led-blinker
-        volumeMounts:
+        volumeDevices:
         - name: gpio-volume
-          mountPath: /dev/gpiomem
+          devicePath: /dev/gpiomem
+        securityContext:
+          privileged: true
       restartPolicy: Always
-      volumes:
-      - name: gpio-volume
-        hostPath:
-          path: /dev/gpiomem
-          type: CharDevice
