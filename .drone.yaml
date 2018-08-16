@@ -1,7 +1,7 @@
 architecture: linux/arm
 
 pipeline:
-  build:
+  publish:
     image: plugins/docker
     repo: arnulfosolis/py-led-blinker
     auto_tag: true
@@ -9,3 +9,6 @@ pipeline:
     secrets:
       - docker_username
       - docker_password
+    when:
+      event: deployment
+      environment: production
