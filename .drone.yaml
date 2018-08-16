@@ -1,0 +1,11 @@
+architecture: linux/arm
+
+pipeline:
+  build:
+    image: plugins/docker
+    repo: arnulfosolis/py-led-blinker
+    auto_tag: true
+    auto_tag_suffix: linux-arm
+    secrets:
+      - docker_username
+      - docker_password
