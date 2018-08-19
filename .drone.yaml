@@ -9,6 +9,4 @@ pipeline:
     secrets:
       - docker_username
       - docker_password
-    when:
-      event: deployment
-      environment: production
+
