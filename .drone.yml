@@ -1,0 +1,24 @@
+platform: linux/arm
+
+clone:
+  default:
+    image: plugins/git:linux-arm
+    depth: 50
+
+pipeline:
+
+  lint:
+    image: python:3.6-slim
+    commands:
+      - pip3 install -r conf/tests/requirements.txt
+      - flake8 --show-source --statistics --benchmark .
+
+  publish:
+    image: plugins/docker:linux-arm
+    repo: arnulfosolis/py-led-blinker
+    auto_tag: true
+    auto_tag_suffix: linux-arm
+    secrets:
+      - docker_username
+      - docker_password
+
