@@ -8,3 +8,5 @@ blueprint = bp = Blueprint('health', __name__, url_prefix='/health')
 def get_health():
     """Return a simple 200."""
     return make_response('I\'m Ok', 200)
+
+
