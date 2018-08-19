@@ -1,6 +1,15 @@
 architecture: linux/arm
 
+clone:
+  default:
+    image: plugins/git:linux-arm
+    depth: 50
+
 pipeline:
+  hello:
+    image: arm32v6/alpine
+    commands:
+      - uname -a
   publish:
     image: plugins/docker:linux-arm
     repo: arnulfosolis/py-led-blinker
