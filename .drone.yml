@@ -6,10 +6,6 @@ clone:
     depth: 50
 
 pipeline:
-  hello:
-    image: arm32v6/alpine
-    commands:
-      - uname -a
 
   lint:
     image: python:3.6-slim
