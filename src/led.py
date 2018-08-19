@@ -30,7 +30,6 @@ SCHEMA = {
     }
 }
 
-
 def get_led(pin_number: int = PIN_NUMBER) -> LED:
     """LED Factory."""
     global _DEFAULT_LED
