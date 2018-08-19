@@ -10,6 +10,10 @@ pipeline:
     image: arm32v6/alpine
     commands:
       - uname -a
+  lint:
+    image: python:3.6-alpine
+    commands:
+      - pip3 install -r conf/tests/requirements.txt
   publish:
     image: plugins/docker:linux-arm
     repo: arnulfosolis/py-led-blinker
