@@ -2,7 +2,7 @@ architecture: linux/arm
 
 pipeline:
   publish:
-    image: plugins/docker
+    image: plugins/docker:linux-arm
     repo: arnulfosolis/py-led-blinker
     auto_tag: true
     auto_tag_suffix: linux-arm
