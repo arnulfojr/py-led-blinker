@@ -1,4 +1,4 @@
-architecture: linux/arm
+platform: linux/arm
 
 clone:
   default:
