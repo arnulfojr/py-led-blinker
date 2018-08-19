@@ -11,7 +11,7 @@ pipeline:
     commands:
       - uname -a
   lint:
-    image: python:3.6-alpine
+    image: python:3.6-slim
     commands:
       - pip3 install -r conf/tests/requirements.txt
   publish:
